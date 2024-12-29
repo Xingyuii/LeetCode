@@ -1,0 +1,15 @@
+def maxNumberAfterRemoval(nums, k):
+    stack = []
+    for num in nums:
+        while stack and k > 0 and stack[-1] < num:
+            stack.pop()
+            k -= 1
+        stack.append(num)
+    
+    # 如果还有剩余的 k，要从尾部移除
+    while k > 0:
+        stack.pop()
+        k -= 1
+    
+    # 将栈中的数字拼接成结果
+    return int("".join(map(str, stack)))
